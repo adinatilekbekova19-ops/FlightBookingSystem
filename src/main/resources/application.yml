@@ -5,6 +5,10 @@ spring:
     password: 123123
     driver-class-name: org.h2.Driver
 
+  web:
+    resources:
+      static-locations: classpath:/static/, file:uploads/
+
   h2:
     console:
       enabled: true
