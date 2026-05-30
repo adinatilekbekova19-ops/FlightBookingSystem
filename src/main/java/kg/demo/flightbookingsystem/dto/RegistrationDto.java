@@ -16,7 +16,7 @@ public class RegistrationDto {
     private String fullName;
 
     @NotBlank(message = "Пароль обязателен")
-    @Size(min = 8, max = 100, message = "Пароль от 8 до 100 символов")
+    @Size(min = 8, max = 20, message = "Пароль от 8 до 20 символов")
     private String password;
 
     @NotBlank(message = "Подтвердите пароль")

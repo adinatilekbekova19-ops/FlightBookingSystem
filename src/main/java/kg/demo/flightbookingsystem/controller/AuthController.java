@@ -4,13 +4,19 @@ import kg.demo.flightbookingsystem.dto.RegistrationDto;
 import kg.demo.flightbookingsystem.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashMap;
+import java.util.Map;
+
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
@@ -32,21 +38,34 @@ public class AuthController {
     public String register(@Valid @ModelAttribute RegistrationDto dto,
                            BindingResult result,
                            Model model) {
-        // Проверка совпадения паролей
+        log.info("Попытка регистрации: {}", dto.getEmail());
+        Map<String, String> errors = new HashMap<>();
+
         if (!dto.getPassword().equals(dto.getConfirmPassword())) {
-            result.rejectValue("confirmPassword", "error.confirmPassword", "Пароли не совпадают");
+            log.warn("Ошибка: пароли не совпадают для {}", dto.getEmail());
+            errors.put("confirmPassword", "Пароли не совпадают");
         }
 
-        // Проверка уникальности email
         if (userService.existsByEmail(dto.getEmail())) {
-            result.rejectValue("email", "error.email", "Email уже зарегистрирован");
+            log.warn("Ошибка: email уже зарегистрирован {}", dto.getEmail());
+            errors.put("email", "Этот email уже зарегистрирован");
         }
 
         if (result.hasErrors()) {
+            for (FieldError error : result.getFieldErrors()) {
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+        }
+
+        if (!errors.isEmpty()) {
+            log.warn("Регистрация отклонена: {} ошибок для {}", errors.size(), dto.getEmail());
+            model.addAttribute("fields", errors);
+            model.addAttribute("registrationDto", dto);
             return "register";
         }
 
         userService.registerUser(dto);
+        log.info("Успешная регистрация: {}", dto.getEmail());
         return "redirect:/login?registered";
     }
 }
