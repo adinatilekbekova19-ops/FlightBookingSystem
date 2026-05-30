@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +25,29 @@ public class AuthController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(@RequestParam(required = false) String error,
+                            @RequestParam(required = false) String registered,
+                            @RequestParam(required = false) String accessDenied,
+                            @RequestParam(required = false) String locked,
+                            @RequestParam(required = false) String logout,
+                            Model model) {
+
+        if (error != null) {
+            model.addAttribute("errorMessage", "Неверный логин/email или пароль");
+        }
+        if (registered != null) {
+            model.addAttribute("successMessage", "Регистрация успешна! Теперь вы можете войти в систему.");
+        }
+        if (accessDenied != null) {
+            model.addAttribute("errorMessage", "У вас нет прав для доступа к этой странице");
+        }
+        if (locked != null) {
+            model.addAttribute("errorMessage", "Ваша компания заморожена. Обратитесь к администратору.");
+        }
+        if (logout != null) {
+            model.addAttribute("infoMessage", "Вы успешно вышли из системы.");
+        }
+
         return "login";
     }
 
@@ -42,12 +65,10 @@ public class AuthController {
         Map<String, String> errors = new HashMap<>();
 
         if (!dto.getPassword().equals(dto.getConfirmPassword())) {
-            log.warn("Ошибка: пароли не совпадают для {}", dto.getEmail());
             errors.put("confirmPassword", "Пароли не совпадают");
         }
 
         if (userService.existsByEmail(dto.getEmail())) {
-            log.warn("Ошибка: email уже зарегистрирован {}", dto.getEmail());
             errors.put("email", "Этот email уже зарегистрирован");
         }
 
@@ -58,14 +79,12 @@ public class AuthController {
         }
 
         if (!errors.isEmpty()) {
-            log.warn("Регистрация отклонена: {} ошибок для {}", errors.size(), dto.getEmail());
-            model.addAttribute("fields", errors);
+            model.addAttribute("fields", errors);  // ← переменная fields
             model.addAttribute("registrationDto", dto);
             return "register";
         }
 
         userService.registerUser(dto);
-        log.info("Успешная регистрация: {}", dto.getEmail());
         return "redirect:/login?registered";
     }
 }

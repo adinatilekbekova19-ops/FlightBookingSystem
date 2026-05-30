@@ -21,18 +21,18 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;                     // Пользователь, который забронировал
+    private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticket_id", nullable = false, unique = true)
-    private Ticket ticket;                 // Забронированный билет
+    private Ticket ticket;
 
     @Column(name = "booking_date", nullable = false)
-    private LocalDateTime bookingDate;     // Д.время бронирования
+    private LocalDateTime bookingDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private BookingStatus status = BookingStatus.ACTIVE;  // Статус бронирования
+    private BookingStatus status = BookingStatus.ACTIVE;
 
     @PrePersist
     protected void onCreate() {

@@ -35,13 +35,11 @@ public class User {
     private Role role;
 
     @Column(nullable = false)
-    private Boolean enabled = true;        // Активен ли аккаунт (не заблокирован)
-
+    private Boolean enabled = true;
     @Column(name = "created_at")
-    private LocalDateTime createdAt;       // Дв регистрации
-
+    private LocalDateTime createdAt;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Booking> bookings = new ArrayList<>();  // список бронирований пользователя
+    private List<Booking> bookings = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
