@@ -36,6 +36,4 @@ public class Ticket {
     @JoinColumn(name = "flight_id", nullable = false)
     private Flight flight;                 // Рейс, к которому относится билет
 
-    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Booking booking;               // Бронирование (если билет занят)
 }
