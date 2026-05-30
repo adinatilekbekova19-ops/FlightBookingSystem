@@ -1,0 +1,871 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: adinatilekbekova
+      changes:
+        - insert:
+            tableName: companies
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: name, value: "Аэрофлот" }
+              - column: { name: email, value: "aeroflot@example.com" }
+              - column: { name: password, value: "$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5E4" }
+              - column: { name: logo_path, value: "/images/aeroflot.png" }
+              - column: { name: frozen, valueBoolean: false }
+              - column: { name: created_at, valueDate: "2024-01-01T00:00:00" }
+        - insert:
+            tableName: companies
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: name, value: "Turkish Airlines" }
+              - column: { name: email, value: "turkish@example.com" }
+              - column: { name: password, value: "$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5E4" }
+              - column: { name: logo_path, value: "/images/turkish.png" }
+              - column: { name: frozen, valueBoolean: false }
+              - column: { name: created_at, valueDate: "2024-01-01T00:00:00" }
+        - insert:
+            tableName: companies
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: name, value: "Avia Traffic" }
+              - column: { name: email, value: "aviatraffic@example.com" }
+              - column: { name: password, value: "$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5E4" }
+              - column: { name: logo_path, value: "/images/aviatraffic.png" }
+              - column: { name: frozen, valueBoolean: false }
+              - column: { name: created_at, valueDate: "2024-01-01T00:00:00" }
+
+        - sql: ALTER TABLE companies ALTER COLUMN id RESTART WITH 10
+
+        # РЕЙСЫ
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 1 }
+              - column: { name: flight_number, value: "SU1234" }
+              - column: { name: departure_city, value: "Москва" }
+              - column: { name: arrival_city, value: "Стамбул" }
+              - column: { name: departure_time, valueDate: "2026-06-15T08:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T12:30:00" }
+              - column: { name: company_id, valueNumeric: 1 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 2 }
+              - column: { name: flight_number, value: "SU5678" }
+              - column: { name: departure_city, value: "Москва" }
+              - column: { name: arrival_city, value: "Бишкек" }
+              - column: { name: departure_time, valueDate: "2026-06-15T10:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T18:30:00" }
+              - column: { name: company_id, valueNumeric: 1 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 3 }
+              - column: { name: flight_number, value: "SU9012" }
+              - column: { name: departure_city, value: "Стамбул" }
+              - column: { name: arrival_city, value: "Москва" }
+              - column: { name: departure_time, valueDate: "2026-06-16T14:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-16T18:30:00" }
+              - column: { name: company_id, valueNumeric: 1 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 4 }
+              - column: { name: flight_number, value: "TK3456" }
+              - column: { name: departure_city, value: "Стамбул" }
+              - column: { name: arrival_city, value: "Москва" }
+              - column: { name: departure_time, valueDate: "2026-06-15T09:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T11:30:00" }
+              - column: { name: company_id, valueNumeric: 2 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 5 }
+              - column: { name: flight_number, value: "TK7890" }
+              - column: { name: departure_city, value: "Стамбул" }
+              - column: { name: arrival_city, value: "Бишкек" }
+              - column: { name: departure_time, valueDate: "2026-06-15T12:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T20:00:00" }
+              - column: { name: company_id, valueNumeric: 2 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 6 }
+              - column: { name: flight_number, value: "TK1122" }
+              - column: { name: departure_city, value: "Бишкек" }
+              - column: { name: arrival_city, value: "Стамбул" }
+              - column: { name: departure_time, valueDate: "2026-06-17T08:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-17T12:00:00" }
+              - column: { name: company_id, valueNumeric: 2 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 7 }
+              - column: { name: flight_number, value: "AV1001" }
+              - column: { name: departure_city, value: "Бишкек" }
+              - column: { name: arrival_city, value: "Москва" }
+              - column: { name: departure_time, valueDate: "2026-06-15T06:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T08:30:00" }
+              - column: { name: company_id, valueNumeric: 3 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 8 }
+              - column: { name: flight_number, value: "AV1002" }
+              - column: { name: departure_city, value: "Бишкек" }
+              - column: { name: arrival_city, value: "Екатеринбург" }
+              - column: { name: departure_time, valueDate: "2026-06-15T14:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-15T16:30:00" }
+              - column: { name: company_id, valueNumeric: 3 }
+        - insert:
+            tableName: flights
+            columns:
+              - column: { name: id, valueNumeric: 9 }
+              - column: { name: flight_number, value: "AV1003" }
+              - column: { name: departure_city, value: "Екатеринбург" }
+              - column: { name: arrival_city, value: "Бишкек" }
+              - column: { name: departure_time, valueDate: "2026-06-16T11:00:00" }
+              - column: { name: arrival_time, valueDate: "2026-06-16T15:30:00" }
+              - column: { name: company_id, valueNumeric: 3 }
+        - sql: ALTER TABLE flights ALTER COLUMN id RESTART WITH 10
+
+
+        # БИЛЕТЫ
+        # Рейс 1 (Москва -> Стамбул)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 15000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 35000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 35000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 35000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 1 }
+
+        # Рейс 2 (Москва -> Бишкек)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 20000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 45000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 45000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 45000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 2 }
+
+        # Рейс 3 (Стамбул -> Москва)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 16000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 38000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 38000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 38000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 3 }
+
+        # Рейс 4 (Стамбул -> Москва)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 14000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 32000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 32000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 32000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 4 }
+
+        # Рейс 5 (Стамбул -> Бишкек)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 25000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 55000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 55000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 55000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 5 }
+
+        # Рейс 6 (Бишкек -> Стамбул)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 23000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 52000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 52000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 52000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 6 }
+
+        # Рейс 7 (Бишкек -> Москва)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 18000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 40000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 40000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 40000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 7 }
+
+        # Рейс 8 (Бишкек -> Екатеринбург)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 12000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 28000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 28000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 28000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 8 }
+
+        # Рейс 9 (Екатеринбург -> Бишкек)
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "1C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2B" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "2C" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "3A" }
+              - column: { name: ticket_class, value: "ECONOMY" }
+              - column: { name: price, valueNumeric: 13000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4A" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 30000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4B" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 30000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+        - insert:
+            tableName: tickets
+            columns:
+              - column: { name: seat_number, value: "4C" }
+              - column: { name: ticket_class, value: "BUSINESS" }
+              - column: { name: price, valueNumeric: 30000 }
+              - column: { name: is_booked, valueBoolean: false }
+              - column: { name: flight_id, valueNumeric: 9 }
+

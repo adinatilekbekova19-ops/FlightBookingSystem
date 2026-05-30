@@ -24,16 +24,16 @@ public class Ticket {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TicketClass ticketClass;       // класс ECONOMY или BUSINESS
+    private TicketClass ticketClass;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;              // стоимость билета
+    private BigDecimal price;
 
     @Column(nullable = false)
-    private Boolean isBooked = false;      // Забронирован ли билет true = занят
+    private Boolean isBooked = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flight_id", nullable = false)
-    private Flight flight;                 // Рейс, к которому относится билет
+    private Flight flight;
 
 }

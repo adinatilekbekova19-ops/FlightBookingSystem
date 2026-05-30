@@ -59,19 +59,15 @@ public class FlightService {
             return new PageImpl<>(List.of(), pageable, 0);
         }
 
-        // Получаем ID всех рейсов
         List<Long> flightIds = flightPage.getContent().stream()
                 .map(Flight::getId)
                 .collect(Collectors.toList());
 
-        // Загружаем ВСЕ свободные билеты для этих рейсов (один запрос)
         List<Ticket> allTickets = ticketRepository.findByFlightIdInAndIsBookedFalse(flightIds);
 
-        // Группируем билеты по рейсам
         Map<Long, List<Ticket>> ticketsByFlight = allTickets.stream()
                 .collect(Collectors.groupingBy(ticket -> ticket.getFlight().getId()));
 
-        // Конвертируем в DTO
         List<FlightDto> flightDtos = flightPage.getContent().stream()
                 .map(flight -> convertToDto(flight, ticketsByFlight.getOrDefault(flight.getId(), List.of())))
                 .collect(Collectors.toList());
@@ -79,10 +75,7 @@ public class FlightService {
         return new PageImpl<>(flightDtos, pageable, flightPage.getTotalElements());
     }
 
-    public Optional<Flight> findById(Long id) {
-        log.info("Поиск рейса по ID: {}", id);
-        return flightRepository.findById(id);
-    }
+
 
 
     public List<String> getAllDepartureCities() {
@@ -111,7 +104,6 @@ public class FlightService {
             dto.setCompanyName(flight.getCompany().getName());
         }
 
-        // Конвертируем билеты (без дополнительных запросов)
         List<TicketDto> ticketDtos = tickets.stream()
                 .map(this::convertTicketToDto)
                 .collect(Collectors.toList());

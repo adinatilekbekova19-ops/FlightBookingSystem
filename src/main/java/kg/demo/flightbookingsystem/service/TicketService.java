@@ -2,6 +2,7 @@ package kg.demo.flightbookingsystem.service;
 
 import kg.demo.flightbookingsystem.dto.TicketDto;
 import kg.demo.flightbookingsystem.entity.Ticket;
+import kg.demo.flightbookingsystem.entity.enums.TicketClass;
 import kg.demo.flightbookingsystem.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,7 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
 
-    public List<Ticket> findAvailableByFlightId(Long flightId) {
-        return ticketRepository.findByFlightIdAndIsBookedFalse(flightId);
-    }
+
 
     public TicketDto getTicketById(Long id) {
         Ticket ticket = ticketRepository.findById(id).orElse(null);
@@ -42,10 +41,19 @@ public class TicketService {
         return dto;
     }
 
-    public List<String> getAvailableSeatsByFlightId(Long flightId) {
-        List<Ticket> tickets = ticketRepository.findByFlightId(flightId);
+    public List<String> getAvailableSeatsByFlightIdAndClass(
+            Long flightId,
+            String ticketClass
+    ) {
+
+        List<Ticket> tickets =
+                ticketRepository
+                        .findByFlightIdAndTicketClassAndIsBookedFalse(
+                                flightId,
+                                TicketClass.valueOf(ticketClass)
+                        );
+
         return tickets.stream()
-                .filter(t -> !t.getIsBooked())
                 .map(Ticket::getSeatNumber)
                 .collect(Collectors.toList());
     }

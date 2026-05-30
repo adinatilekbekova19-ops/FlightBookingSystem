@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    // Найти пользователя по email (для авторизации)
     User findByEmail(String email);
 
-    // Проверить существование email (для регистрации)
     boolean existsByEmail(String email);
 }
